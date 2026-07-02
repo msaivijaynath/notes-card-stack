@@ -5,7 +5,7 @@
 }
 
 body {
-  background: #f7f7f7;
+  background: #c7c2c2;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -54,10 +54,10 @@ body {
 }
 
 .black {
-  background: black;
+  background: rgb(44, 41, 41);
 }
 .purple {
-  background: #a855f7;
+  background: #ffffff;
 }
 .orange {
   background: #fb923c;
@@ -117,7 +117,7 @@ h2 {
   display: flex;
   justify-content: space-between;
   font-size: 14px;
-  color: #555;
+  color: #2d2d2d;
   margin-bottom: 6px;
 }
 
@@ -213,4 +213,40 @@ input[type="text"] {
   font-weight: 500;
   border-radius: 100px;
   text-transform: capitalize;
+}
+:root {
+    --bg: #f5f5f5;
+    --text: #222;
+    --card: #ffffff;
+    --input: #ffffff;
+    --border: #ccc;
+}
+
+body.dark {
+    --bg: #121212;
+    --text: #f5f5f5;
+    --card: #1e1e1e;
+    --input: #2b2b2b;
+    --border: #555;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.3s, color 0.3s;
+}
+
+.card {
+    background: var(--card);
+    color: var(--text);
+}
+
+input,
+textarea {
+    background: var(--input);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+body.dark span{
+  color: #e9e7e7;
 }

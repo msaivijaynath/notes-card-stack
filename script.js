@@ -118,9 +118,11 @@ form.addEventListener("submit", function (e) {
 
     form.reset()
     formcontainer.style.display = "none"
+    showcards()
 });
 
 function showcards(){
+    stack.innerHTML = ""
     let alltasks = JSON.parse(localStorage.getItem("tasks"))
 
     alltasks.forEach(element => {
@@ -186,6 +188,17 @@ function showcards(){
 }
 showcards()
 
+function updatestack(){
+    let cards = document.querySelectorAll(".card");
+
+    for(let index = 0 ; index < Math.min(3,cards.length) ; index++){
+        let element = cards[index]
+        element.style.zIndex = 3 - index
+        element.style.transform = `translateY(${index*10}px) scale(${1 - index*0.02})`
+        element.style.opacity = `${1 - index*0.02}`
+    }
+}
+
 upbtn.addEventListener("click",function(){
     let lastchild = stack.lastElementChild;
     if(lastchild){
@@ -196,5 +209,28 @@ upbtn.addEventListener("click",function(){
 })
 
 downbtn.addEventListener("click",function(){
-
+    let firstchild = stack.firstElementChild;
+    if(firstchild){
+        stack.appendChild(firstchild)
+        //update
+        updatestack()
+    }
 })
+
+const darkBtn = document.querySelector("#dark");
+const lightBtn = document.querySelector("#light");
+
+darkBtn.addEventListener("click", () => {
+    document.body.classList.remove("light");
+    document.body.classList.add("dark");
+    localStorage.setItem("theme","dark")
+});
+
+lightBtn.addEventListener("click", () => {
+    document.body.classList.remove("dark");
+    document.body.classList.add("light");
+    localStorage.setItem("theme","light")
+});
+
+const savedTheme = localStorage.getItem("theme") || "light";
+document.body.className = savedTheme;
