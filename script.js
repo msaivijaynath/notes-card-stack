@@ -221,6 +221,7 @@ const darkBtn = document.querySelector("#dark");
 const lightBtn = document.querySelector("#light");
 
 darkBtn.addEventListener("click", () => {
+    console.log("dark clicked")
     document.body.classList.remove("light");
     document.body.classList.add("dark");
     localStorage.setItem("theme","dark")
